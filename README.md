@@ -24,7 +24,7 @@ Used TEXT fields during table creation to support UTF-8 encoding. Without this, 
 Used a CTE with ROW_NUMBER() to identify duplicates. Initial dedup using only title and type incorrectly removed 4 rows instead of 3. Investigation revealed that "Veronica" (Spain, Paco Plaza) and "Verónica" (Mexico, Martinez-Beltran) are different films that MySQL's accent-insensitive collation treated as matches. Fixed by adding release_year and director to the partition criteria.
 
 **Step 3: Normalize Multi-Value Columns**
-Columns like director, cast, country, and listed_in stored comma-separated values. SQL Server has a built-in STRING_SPLIT function, but MySQL does not. Created a reusable numbers table with a recursive CTE, then used SUBSTRING_INDEX to split values into four normalized lookup tables: netflix_directors, netflix_cast, netflix_genres, and netflix_countries.
+Split comma-separated columns (director, cast, country, listed_in) into four normalized lookup tables. MySQL lacks SQL Server's STRING_SPLIT, so used a recursive CTE with SUBSTRING_INDEX as a workaround.
 
 **Step 4: Handle Missing Values**
 Built a director-country lookup by joining netflix_directors and netflix_countries, then used INSERT INTO to populate missing country values based on what country the director's other titles are from.
