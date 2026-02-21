@@ -13,7 +13,7 @@ End-to-end data cleaning and analysis of the Netflix Titles dataset (8,807 title
 | `netflix_raw.sql` | Creates the raw staging table schema with appropriate data types |
 | `netflix_data_cleaning.sql` | 5-step cleaning pipeline: foreign characters, dedup, normalization, missing values, final table |
 | `netflix_data_analysis.sql` | 5 analytical queries exploring directors, genres, countries, and duration |
-| `Netflix - Technical Documentation.docx` | Detailed documentation of observations, decisions, and errors encountered |
+
 
 ## Data Cleaning Pipeline
 
